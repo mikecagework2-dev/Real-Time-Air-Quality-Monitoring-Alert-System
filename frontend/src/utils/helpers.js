@@ -46,7 +46,8 @@ export function formatPollutant(value, unit = "µg/m³") {
 export function formatTimestamp(timestamp) {
   if (!timestamp) return "—";
   try {
-    const date = new Date(timestamp + (timestamp.endsWith("Z") ? "" : "Z"));
+    const normalized = timestamp.endsWith("Z") ? timestamp : timestamp + "Z";
+    const date = new Date(normalized);
     return date.toLocaleString();
   } catch {
     return timestamp;
